@@ -1,0 +1,150 @@
+<!--https://codeactually.com/interactivequiz.html-->
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Scam Quiz</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Helvetica;
+        }
+        #main {
+            width: 100%;
+            max-width: 950px;
+            margin: auto;
+            padding: 10px;
+            /*
+            border: 1px rgb(0, 0, 0) solid;
+            background-color: white;
+            border-radius: 10px;*/
+        }
+
+        #header {
+            margin-top: 0;
+            padding: 5px;
+            height: 100px;
+            background-color: rgba(173, 216, 230, 0.705);
+            color: rgb(0, 0, 0);
+        }
+
+        label {
+            display: block;
+        }
+
+        input {
+            width: 30px;
+            margin-left: 20px;
+        }
+
+        h2 {
+            clear: both;
+            padding-top: 20px;
+        }
+
+        button {
+            width: 100px;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="main">
+        <!-- open main div -->
+        <div id="header">
+            <!-- open header div -->
+            <h1>Scam Quiz</h1>
+        </div><!-- close header div -->
+
+        <form id="form1">
+
+            <h2><text id="questions"></text></h2>
+            <label for="var_string"><input type="radio" name="variable" value="1" id="var_string" /><text
+                    id="answers1"></text></label>
+            <label for="var_join"><input type="radio" name="variable" value="2" id="var_join" /><text
+                    id="answers2"></text></label>
+            <label for="var_info"><input type="radio" name="variable" value="3" id="var_info" /><text
+                    id="answers3"></text></label>
+            <label for="var_condition"><input type="radio" name="variable" value="4" id="var_condition" /><text
+                    id="answers4"></text></label>
+            <!--
+            <h2>Which is the best description of the substring method?</h2>
+            <label for="sub_string"><input type="radio" name="sub" value="25" id="sub_string" />Identifies a portion of
+                a string.</label>
+            <label for="sub_join"><input type="radio" name="sub" value="0" id="sub_join" />A method to join
+                strings.</label>
+            <label for="sub_info"><input type="radio" name="sub" value="0" id="sub_info" />Allows you to store
+                information so it can be reused throughout the program</label>
+            <label for="sub_condition"><input type="radio" name="sub" value="0" id="sub_condition" />Allows you to make
+                a decision based on a condition.</label>
+
+            <h2>Which is the best description of concatenation?</h2>
+            <label for="cat_string"><input type="radio" name="con" value="0" id="cat_string" />Identifies a portion of a
+                string.</label>
+            <label for="cat_join"><input type="radio" name="con" value="25" id="cat_join" />A method to join
+                strings.</label>
+            <label for="cat_info"><input type="radio" name="con" value="0" id="cat_info" />Allows you to store
+                information so it can be reused throughout the program</label>
+            <label for="cat_condition"><input type="radio" name="con" value="0" id="cat_condition" />Allows you to make
+                a decision based on a condition.</label>
+
+            <h2>Which is the best description of an if statement?</h2>
+            <label for="if_string"><input type="radio" name="ifstate" value="0" id="if_string" />Identifies a portion of
+                a string.</label>
+            <label for="if_join"><input type="radio" name="ifstate" value="0" id="if_join" />A method to join
+                strings.</label>
+            <label for="if_info"><input type="radio" name="ifstate" value="0" id="if_info" />Allows you to store
+                information so it can be reused throughout the program</label>
+            <label for="if_condition"><input type="radio" name="ifstate" value="25" id="if_condition" />Allows you to
+                make a decision based on a condition.</label>
+
+            -->
+            <button type="submit" value="Submit">Submit</button>
+        </form>
+
+    </div><!-- close main div -->
+
+    <script>
+
+        var questions = ["Which scam will ask you to buy credits (Itunes cards etc)",
+            "Which scam tell you that they are from police and ask you to transfer money to them?",
+            "It’s not a real love, what scam is that?",
+            "How to protect yourself online?<br><br>a) Check if you are buying from a real company<br>b) Don’t click or download anything you don’t trust<br>c) Be careful about giving personal information away<br>d) Check if your details have been shared online<br>e) Secure your online accounts"];
+        var answers1 = ["Love Scam", "Impersonation Scam", "Impersonating scam", "A,B,C "];
+        var answers2 = ["Loan Scam", "Computer Scam", "Love scam", "A,B,D"];
+        var answers3 = ["Impersonation Scam", "Love Scam", "Loan scam", "A,C,D"];
+        var answers4 = ["Computer Scam", "Loan Scam", "Social media scam", "All of the above "];
+        var correct = [3, 1, 2, 4];
+        var random001 = Math.floor(Math.random() * questions.length);
+
+        document.getElementById("form1").onsubmit = function () {
+            variable = parseInt(document.querySelector('input[name = "variable"]:checked').value);
+
+            result = variable;
+
+            //if correct
+            if (result == correct[random001]) { location.href = "wheel.html"; }
+            else { 
+                    alert("OPPS! you got the wrong answer ");
+                    location.href = "index.html"; }
+
+
+
+            return false; // required to not refresh the page; just leave this here
+        } //this ends the submit function
+
+
+        document.getElementById("questions").innerHTML = questions[random001];
+        document.getElementById("answers1").innerHTML = answers1[random001];
+        document.getElementById("answers2").innerHTML = answers2[random001];
+        document.getElementById("answers3").innerHTML = answers3[random001];
+        document.getElementById("answers4").innerHTML = answers4[random001];
+
+    </script>
+
+</body>
+
+</html>
