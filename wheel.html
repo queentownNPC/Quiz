@@ -46,12 +46,12 @@ SOFTWARE.
         }
 
         #chart {
-        position:absolute;
-        width:500px;
-        height:500px;
-        top:500;
-        left:500;
-    }
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            top: 500;
+            left: 500;
+        }
 
         #question {
             position: absolute;
@@ -82,6 +82,10 @@ SOFTWARE.
         <h1></h1>
     </div>
 
+    <audio id="tick">
+        <source src="tick2.mp3" type="audio/mpeg">
+      </audio>
+
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
         var padding = { top: 20, right: 40, bottom: 0, left: 0 },
@@ -98,9 +102,11 @@ SOFTWARE.
         //http://osric.com/bingo-card-generator/?title=HTML+and+CSS+BINGO!&words=padding%2Cfont-family%2Ccolor%2Cfont-weight%2Cfont-size%2Cbackground-color%2Cnesting%2Cbottom%2Csans-serif%2Cperiod%2Cpound+sign%2C%EF%B9%A4body%EF%B9%A5%2C%EF%B9%A4ul%EF%B9%A5%2C%EF%B9%A4h1%EF%B9%A5%2Cmargin%2C%3C++%3E%2C{+}%2C%EF%B9%A4p%EF%B9%A5%2C%EF%B9%A4!DOCTYPE+html%EF%B9%A5%2C%EF%B9%A4head%EF%B9%A5%2Ccolon%2C%EF%B9%A4style%EF%B9%A5%2C.html%2CHTML%2CCSS%2CJavaScript%2Cborder&freespace=true&freespaceValue=Web+Design+Master&freespaceRandom=false&width=5&height=5&number=35#results
 
         var data = [
-            { "label": "Prize 1", "value": 1, "question": "You have won the 1st Prize" }, // padding
-            { "label": "Prize 2", "value": 1, "question": "You have won the 2nd Prize" }, //font-family
-            { "label": "Prize 3", "value": 1, "question": "You have won the 3rd Prize" }, //color
+            { "label": "Prize A", "value": 1, "question": "You have won Prize A", "url": "https://form.gov.sg/#!/609f5db4d87fb60011319994" }, // padding
+            { "label": "Prize B", "value": 1, "question": "You have won Prize B", "url": "https://form.gov.sg/#!/609f5a8f4610f7001105f0fe" }, //font-family
+            { "label": "Prize C", "value": 1, "question": "You have won Prize C", "url": "https://form.gov.sg/#!/609f5cb1b3fce000127f074c" }, //color
+            { "label": "Prize D", "value": 1, "question": "You have won Prize D", "url": "https://form.gov.sg/#!/609f5e415d69e600118ec4ff" }, //color
+            { "label": "Prize E", "value": 1, "question": "You have won Prize E", "url": "https://form.gov.sg/#!/609f61966d1aca0011aeeb30" }, //color
             //                    {"label":"Question 4",  "value":1,  "question":"What CSS property is used for changing the boldness of text?"}, //font-weight
             //                    {"label":"Question 5",  "value":1,  "question":"What CSS property is used for changing the size of text?"}, //font-size
             //                    {"label":"Question 6",  "value":1,  "question":"What CSS property is used for changing the background color of a box?"}, //background-color
@@ -130,6 +136,8 @@ SOFTWARE.
             ///                   {"label":"Question 30", "value":1, "question":"What character symbol do I use to specify multiple CSS selectors in one code block?"} //comma
         ];
 
+        //audio
+        var audio = document.getElementById("tick"); 
 
         var svg = d3.select('#chart')
             .append("svg")
@@ -179,6 +187,7 @@ SOFTWARE.
         function spin(d) {
 
             container.on("click", null);
+                audio.play();
 
             //all slices have been seen, all done
             console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
@@ -220,10 +229,12 @@ SOFTWARE.
                     d3.select("#question h1")
                         .text(data[picked].question);
 
-                    oldrotation = rotation; 
-                    
-                    alert(data[picked].question + "\nFill in the form in the next page to collect your prize");
-                    location.href = "https://form.gov.sg/#!/"; 
+                    oldrotation = rotation;
+                    //setTimeout(function(){ alert("Hello"); }, 3000);
+                    setTimeout(function () {
+                        alert(data[picked].question + "\nFill in the form in the next page to collect your prize");
+                        location.href = data[picked].url;
+                    }, 1500);
 
 
 
